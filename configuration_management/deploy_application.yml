@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  vars:
+    doc_root: /var/www/lab
+  tasks:
+    - name: Create inc directory to host the database information file
+      file:
+        path: /var/www/inc
+        state: directory
+
+    - name: Deploy database information file
+      template: src=./templates/dbinfo.j2 dest=/var/www/inc/dbinfo.inc
+
+    - name: Deploy sample page
+      copy: src=./pages/index.php dest={{ doc_root }}/index.php owner=www-data group=www-data mode=0644
+      notify: Restart apache
+
+  handlers:
+    - name: Restart apache
+      service: name=apache2 state=restarted
