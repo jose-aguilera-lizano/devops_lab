@@ -204,7 +204,7 @@ resource "aws_instance" "webserver_01" {
     inline = ["echo 'Instance Ready Check'"]
   }
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=\"False\" ansible-playbook -i '${self.public_ip},' deploy_application.yml --extra-vars 'rds_endpoint=\"${aws_db_instance.lab_rds.address}\" rds_user=\"${aws_db_instance.lab_rds.username}\" rds_password=\"${aws_db_instance.lab_rds.password}\" rds_database=\"${aws_db_instance.lab_rds.name}\"'"
+    command = "ANSIBLE_HOST_KEY_CHECKING=\"False\" ansible-playbook -i '${self.public_ip},' ../configuration_management/deploy_application.yml --extra-vars 'rds_endpoint=\"${aws_db_instance.lab_rds.address}\" rds_user=\"${aws_db_instance.lab_rds.username}\" rds_password=\"${aws_db_instance.lab_rds.password}\" rds_database=\"${aws_db_instance.lab_rds.name}\"'"
   }
   # we need the DB to be ready before we provision the web servers
   depends_on = [aws_db_instance.lab_rds]
@@ -239,7 +239,7 @@ resource "aws_instance" "webserver_02" {
     inline = ["echo 'Instance Ready Check'"]
   }
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=\"False\" ansible-playbook -i '${self.public_ip},' deploy_application.yml --extra-vars 'rds_endpoint=\"${aws_db_instance.lab_rds.address}\" rds_user=\"${aws_db_instance.lab_rds.username}\" rds_password=\"${aws_db_instance.lab_rds.password}\" rds_database=\"${aws_db_instance.lab_rds.name}\"'"
+    command = "ANSIBLE_HOST_KEY_CHECKING=\"False\" ansible-playbook -i '${self.public_ip},' ../configuration_management/deploy_application.yml --extra-vars 'rds_endpoint=\"${aws_db_instance.lab_rds.address}\" rds_user=\"${aws_db_instance.lab_rds.username}\" rds_password=\"${aws_db_instance.lab_rds.password}\" rds_database=\"${aws_db_instance.lab_rds.name}\"'"
   }
   # we need the DB to be ready before we provision the web servers
   depends_on = [aws_db_instance.lab_rds]
