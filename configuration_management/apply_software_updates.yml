@@ -1,0 +1,10 @@
+---
+- hosts: default
+  become: true
+  tasks:
+    - name: Update repositories cache
+      apt:
+        update_cache: yes
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist
