@@ -1,0 +1,7 @@
+{
+  "aws_access_key": "your access key goes here - never commit/push to github",
+  "aws_secret_key": "your secret key goes here - never commit/push to github",
+  "aws_region": "us-west-2",
+  "source_cidrs": "0.0.0.0/0",
+  "ami_name": "ubuntu_web_server"
+}
