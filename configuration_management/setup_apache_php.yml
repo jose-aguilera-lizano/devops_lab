@@ -1,0 +1,29 @@
+---
+- hosts: default
+  become: true
+  vars:
+    doc_root: /var/www/lab
+  tasks:
+    - name: Install Apache and PHP
+      apt:
+        pkg:
+          - apache2
+          - php
+          - libapache2-mod-php
+          - php-mysql
+
+    - name: Enable Apache service to start at boot
+      service:
+        name: apache2
+        enabled: yes
+
+    - name: Create custom document root
+      file: path={{ doc_root }} state=directory owner=www-data group=www-data
+
+    - name: Set up Apache virtual host file
+      template: src=./templates/vhost.j2 dest=/etc/apache2/sites-available/000-default.conf
+      notify: Restart apache
+
+  handlers:
+    - name: Restart apache
+      service: name=apache2 state=restarted
