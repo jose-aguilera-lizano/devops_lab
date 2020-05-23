@@ -149,7 +149,7 @@ resource "aws_security_group" "lab_rds_sg" {
 
 resource "aws_db_instance" "lab_rds" {
   depends_on             = [aws_security_group.lab_rds_sg]
-  identifier             = "lab_rds"
+  identifier             = "lab-rds"
   allocated_storage      = "5"
   engine                 = "mysql"
   engine_version         = "5.7.21"
