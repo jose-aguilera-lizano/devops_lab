@@ -87,7 +87,7 @@ It is live! :smiley:
 </p>
 
 ## Next steps
-There is an issue open in this repository with a list of all the enhancements I would work on to make this a better solution if I could have spent some additional time. 
+There is an issue open in this repository with a list of all the enhancements I would have worked on to make this a better solution if I could have spent some additional time. 
 
 ## Built with
 * [Packer](https://www.packer.io/) - Used to automate the creation of a custom AMI
