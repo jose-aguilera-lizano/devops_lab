@@ -30,6 +30,7 @@ In this step Terraform is used to provision new instances of all the services re
 2. At least one IAM user with programmatic access to interact with AWS. For Packer, a policy document with the minimun set of permissions for Packer to work is available [here](https://www.packer.io/docs/builders/amazon/)
 3. A host where to execute the tools listed at [Built with](https://github.com/jose-aguilera-lizano/devops_lab#built-with). 
 4. The tools binaries available in your systems's PATH
+5. A set of SSH keys; as a reference, [here](https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html) you can find the command to generate a pair of keys (public and private) in different operating systems
 
 For this project I installed all the tools in a single Ubuntu 18.04 EC2 instance. For Packer and Terraform, I downloaded the Linux package, unzipped it and added the binary to the system's PATH. For Ansible, the following commands were executed:
 ```sh
@@ -64,6 +65,16 @@ The command above will create a new directory called **devops_lab** in your curr
 <p align="center">
   <img src="https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_ami_terraform.png">
 </p>
+3. Open the file **terraform.tfvars**; set the appropriate values for the following variables:
+```
+key_name        = "give a name to the key AWS will create to access the EC2 instances"
+public_key_path = "the path to the public SSH key goes here"
+private_key_path = "the path to the private SSH key goes here"
+source_cidrs = ["your CIDRs go here"]
+rds_name = "your RDS database name goes here"
+rds_username = "your RDS database username goes here"
+rds_password = "your RDS database password goes here"
+```
 
 
 ## Built with
