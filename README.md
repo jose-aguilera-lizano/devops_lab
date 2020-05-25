@@ -48,10 +48,17 @@ The command above will create a new directory called **devops_lab** in your curr
 
 ##### Step 1: OS image creation
 1. Access the directory **os_image_creation**; this directory is right under the directory **devops_lab**
-2. Open the file variables.json and edit it; consider the following:
+2. Open the file **variables.json** and edit it; consider the following:
   - One must never commit and push unencrypted credentials to GitHub; the first two variables (**aws_access_key** and **aws_secret_key**) have placeholder values; set your IAM user credentials here
   - By default, us-west-2 is used for the **aws_region**; [here](https://www.cloudping.info/) you can check the latency from your browser to multiple AWS regions and adjust the value accordinly
-  - By default, when Packer creates an EC2 instance from the source/base AMI it creates a temporary security group that allows SSH access to everyone out there
+  - By default, when Packer creates an EC2 instance from the source/base AMI it creates a temporary security group that allows SSH access to everyone out there. We can set the **source_cidrs** to limit what host or hosts will have access to the temporary EC2 instance. For example, you can set the value to your laptop's public IP address
+  - With **ami_name** you define the name for the custom AMI that Packer will create; in the **ubuntu_web_server.json** file we append a timestamp to this AMI name is order to make it unique
+3. Execute the Packer command to build the custom AMI: `packer build -var-file=variables.json ubuntu_web_server.json`; once the AMI is ready you will get the AMI ID as shown in the screenshot below. Please take note of the AMI ID as it is needed for the infrastructure provisioning.
+
+![AMI ID](https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_ami.png)
+
+##### Step 2: Application provisioning
+1. Access the directory **application_provisioning**; this directory is right under the directory **devops_lab**
 
 ### Built with
 * [Packer](https://www.packer.io/) - Used to automate the creation of a custom AMI
