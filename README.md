@@ -70,8 +70,24 @@ The command above will create a new directory called **devops_lab** in your curr
   - **rds_name**: provide the name of the RDS database to be created
   - **rds_username**: provide the username for the RDS
   - **rds_password**: provide the password for the RDS
+4. Execute the command `terraform init` to get a version of the aws provider installed
+5. There are multiple ways to set the IAM user credentials for Terraform to be able to provision the infrastructure, details are available [here](https://www.terraform.io/docs/providers/aws/index.html). Here we will use the environment variables. In our Ubuntu 18.04 host we have set them by running the following commands:
+```
+export AWS_ACCESS_KEY_ID=<access_key_here>
+export AWS_SECRET_ACCESS_KEY=<secret_key_here>
+```
+5. Once the environment variables are set, run the command `terraform apply`; Terraform will generate an execution plan and will then request you to enter 'yes' to approve it and start the execution. Take a look at the execution plan and then enter 'yes'. Once the execution finishes, you will get the DNS of the load balancer as the output. Access the DNS of the load balancer in a browser to see the web application.
+<p align="center">
+  <img src="https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devops_lab_terraform.png">
+</p>
 
+It is live! :smiley:
+<p align="center">
+  <img src="https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_webapp.png">
+</p>
 
+## Next steps
+There is an issue open in this repository with a list of all the enhancements I would work on to make this a better solution if I could have spent some additional time. 
 
 ## Built with
 * [Packer](https://www.packer.io/) - Used to automate the creation of a custom AMI
