@@ -7,7 +7,7 @@ The project provides a set of configuration files that coupled with [Packer](htt
 3. The web server will not accept requests directly; instead, it will serve the requests through the load balancer only
 4. Handle persistent data in RDS
 
-## Implementation
+### Implementation
 
 Here is a diagram of the infrastructure that will be provisioned in AWS in order to enable the web application:  
 
@@ -22,3 +22,8 @@ In this step Packer is used to build a custom AMI backed by EBS volumes for use 
 
 #### Step 2: Application provisioning
 In this step Terraform is used to provision new instances of all the services required to host and make the application work, from the VPC to the database; the EC2 instances we create to play the role of web servers are launched from the AMI created in the first step above. Once the infrastructure is ready, the web application is deployed via Ansible. As a result we get the DNS of the load balancer. 
+
+### Built with
+* [Packer](https://www.packer.io/) - Used to automate the creation of a custom AMI
+* [Terraform](https://www.terraform.io/) - IaC (Infrastructure as Code) tool used to provision and manage the AWS infrastructure/services
+* [Ansible](https://www.ansible.com/) - The automation engine used for configuration management and application deployment
