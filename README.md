@@ -62,19 +62,15 @@ The command above will create a new directory called **devops_lab** in your curr
 #### Step 2: Application provisioning
 1. Access the directory **application_provisioning**; this directory is right under the directory **devops_lab**
 2. Open the file **variables.tf**; here we have the definition of the variables we will use in the Terraform configuration file and for some of them we have defined default values. Look for the variable **aws_amis** and replace the placeholder value with the AMI ID you got from the steps above. The need the ID of an AMI created in the same region where we will provision the infrastructure. In the screenshot below, we have replaced the placeholder value for the us-west-2 region with the AMI ID we got from the step above
-<p align="center">
-  <img src="https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_ami_terraform.png">
-</p>
-3. Open the file **terraform.tfvars**; set the appropriate values for the following variables:
-```
-key_name        = "give a name to the key AWS will create to access the EC2 instances"
-public_key_path = "the path to the public SSH key goes here"
-private_key_path = "the path to the private SSH key goes here"
-source_cidrs = ["your CIDRs go here"]
-rds_name = "your RDS database name goes here"
-rds_username = "your RDS database username goes here"
-rds_password = "your RDS database password goes here"
-```
+3. Open the file **terraform.tfvars**; set the appropriate values for the following variables
+  - **key_name**: give a name to the key AWS will create to access the EC2 instances
+  - **public_key_path**: provide the path to the public SSH key
+  - **private_key_path**: provide the path to the private SSH key
+  - **source_cidrs**: provide CIDR(s) that will have SSH access to the EC2 instances to execute Ansible playbook
+  - **rds_name**: provide the name of the RDS database to be created
+  - **rds_username**: provide the username for the RDS
+  - **rds_password**: provide the password for the RDS
+
 
 
 ## Built with
