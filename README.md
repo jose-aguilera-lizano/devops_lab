@@ -54,11 +54,17 @@ The command above will create a new directory called **devops_lab** in your curr
   - By default, when Packer creates an EC2 instance from the source/base AMI it creates a temporary security group that allows SSH access to everyone out there. We can set the **source_cidrs** to limit what host or hosts will have access to the temporary EC2 instance. For example, you can set the value to your laptop's public IP address
   - With **ami_name** you define the name for the custom AMI that Packer will create; in the **ubuntu_web_server.json** file we append a timestamp to this AMI name is order to make it unique
 3. Execute the Packer command to build the custom AMI: `packer build -var-file=variables.json ubuntu_web_server.json`; once the AMI is ready you will get the AMI ID as shown in the screenshot below. Please take note of the AMI ID as it is needed for the infrastructure provisioning.
-
-![AMI ID](https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_ami.png)
+<p align="center">
+  <img src="https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_ami.png">
+</p>
 
 #### Step 2: Application provisioning
 1. Access the directory **application_provisioning**; this directory is right under the directory **devops_lab**
+2. Open the file **variables.tf**; here we have the definition of the variables we will use in the Terraform configuration file and for some of them we have defined default values. Look for the variable **aws_amis** and replace the placeholder value with the AMI ID you got from the steps above. The need the ID of an AMI created in the same region where we will provision the infrastructure. In the screenshot below, we have replaced the placeholder value for the us-west-2 region with the AMI ID we got from the step above
+<p align="center">
+  <img src="https://github.com/jose-aguilera-lizano/alittlebitofeverything/blob/master/devlops_ami_terraform.png">
+</p>
+
 
 ## Built with
 * [Packer](https://www.packer.io/) - Used to automate the creation of a custom AMI
